@@ -19,18 +19,20 @@ const App = () => {
             flex: 2,
             justifyContent: 'flex-end',
             alignItems: 'flex-end',
-          }}>
+          }}
+        >
           <Text
             style={{
               color: 'white',
               fontWeight: 'bold',
               fontSize: 40,
               marginBottom: 10,
-            }}>
+            }}
+          >
             {currentNumber}
           </Text>
         </View>
-        <View style={{flex: 5, flexDirection: 'row'}}>
+        <View style={{ flex: 5, flexDirection: 'row' }}>
           <View style={styles.numbersContainer}>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((number, numberIndex) => (
               <TouchableHighlight
@@ -48,8 +50,9 @@ const App = () => {
                   currentNumber === '0'
                     ? setCurrentNumber(number.toString())
                     : setCurrentNumber(`${currentNumber}${number}`);
-                }}>
-                <Text style={{fontWeight: 'bold'}}>{number}</Text>
+                }}
+              >
+                <Text style={{ fontWeight: 'bold' }}>{number}</Text>
               </TouchableHighlight>
             ))}
           </View>
@@ -62,8 +65,9 @@ const App = () => {
               onPress={() => {
                 setFirstNumber(0);
                 setCurrentNumber('');
-              }}>
-              <Text style={{fontWeight: 'bold', color: 'white'}}>AC</Text>
+              }}
+            >
+              <Text style={{ fontWeight: 'bold', color: 'white' }}>AC</Text>
             </TouchableHighlight>
             <TouchableHighlight
               style={{
@@ -76,8 +80,9 @@ const App = () => {
                   setCurrentNumber(`${currentNumber.slice(1)}`);
                 if (currentNumber[0] !== '-')
                   setCurrentNumber(`-${currentNumber}`);
-              }}>
-              <Text style={{fontWeight: 'bold', color: 'white'}}>NEG</Text>
+              }}
+            >
+              <Text style={{ fontWeight: 'bold', color: 'white' }}>NEG</Text>
             </TouchableHighlight>
             {['+', '*', '-', '/'].map((action, actionIndex) => (
               <TouchableHighlight
@@ -90,8 +95,9 @@ const App = () => {
                   setCurrentAction(action);
                   setFirstNumber(parseInt(currentNumber));
                   setCurrentNumber('');
-                }}>
-                <Text style={{fontWeight: 'bold', color: 'white'}}>
+                }}
+              >
+                <Text style={{ fontWeight: 'bold', color: 'white' }}>
                   {action}
                 </Text>
               </TouchableHighlight>
@@ -103,23 +109,20 @@ const App = () => {
               }}
               onPress={() => {
                 if (currentAction === '') return;
-                let secondNumber: number = parseInt(currentNumber)
+                let secondNumber: number = parseInt(currentNumber);
                 let result: number = secondNumber;
-                if (currentAction === '+')
-                  result = firstNumber + secondNumber;
-                if (currentAction === '-')
-                  result = firstNumber - secondNumber;
-                if (currentAction === '/')
-                  result = firstNumber / secondNumber;
-                if (currentAction === '*')
-                  result = firstNumber * secondNumber;
+                if (currentAction === '+') result = firstNumber + secondNumber;
+                if (currentAction === '-') result = firstNumber - secondNumber;
+                if (currentAction === '/') result = firstNumber / secondNumber;
+                if (currentAction === '*') result = firstNumber * secondNumber;
                 isFinite(result)
                   ? setCurrentNumber(result.toString())
                   : setCurrentNumber('Not a number');
                 setCurrentAction('');
                 setFirstNumber(result);
-              }}>
-              <Text style={{fontWeight: 'bold', color: 'white'}}>=</Text>
+              }}
+            >
+              <Text style={{ fontWeight: 'bold', color: 'white' }}>=</Text>
             </TouchableHighlight>
           </View>
         </View>
